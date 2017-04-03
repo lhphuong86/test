@@ -16,7 +16,7 @@ import javax.xml.bind.Unmarshaller;
  *
  * @author lhphuong86
  */
-public class Utils{
+public class Utils {
 
 	public static <T> String convertToXml(T t) {
 		String result;
@@ -25,6 +25,11 @@ public class Utils{
 			JAXBContext carContext = JAXBContext.newInstance(t.getClass());
 			Marshaller carMarshaller = carContext.createMarshaller();
 			carMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			//carMarshaller.setProperty("com.sun.xml.internal.bind.namespacePrefixMapper", new MyNamespaceMapper());
+            //m.setProperty("com.sun.xml.bind.namespacePrefixMapper", new MyNamespaceMapper());
+
+			carMarshaller.setProperty(Marshaller.JAXB_FRAGMENT, true);
+
 			carMarshaller.marshal(t, sw);
 			result = sw.toString();
 		}
@@ -35,17 +40,16 @@ public class Utils{
 		return result;
 	}
 
-	public static  <T> T convertToObject(String xml, T t) throws JAXBException {
+	public static <T> T convertToObject(String xml, T t) throws JAXBException {
 		JAXBContext jaxbContext = JAXBContext.newInstance(t.getClass());
 		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 		StringReader reader = new StringReader(xml);
 		T person = (T) unmarshaller.unmarshal(reader);
 		return person;
 	}
-	
-	
+
 	public static void main(String[] args) {
 		System.out.println(Utils.class);
 	}
-	
+
 }

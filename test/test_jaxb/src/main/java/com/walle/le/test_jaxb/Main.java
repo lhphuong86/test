@@ -14,11 +14,11 @@ import javax.xml.bind.JAXBException;
 public class Main {
 
 	public static void main(String[] args) throws JAXBException {
+
 		RequestXML requestXML = new RequestXML();
 		requestXML.setFullName("le hoai phuong");
 		requestXML.setVcbID("50401938");
-		System.out.println("XML string" + Utils.convertToXml(requestXML));
-
+		System.out.println(Utils.convertToXml(requestXML));
 		System.out.println("Object string" + Utils.convertToObject(Utils.convertToXml(requestXML),requestXML));
 
 	}

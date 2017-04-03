@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.walle.le.test_jaxb;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -11,7 +12,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author lhphuong86
  */
-@XmlRootElement
+@XmlRootElement(name="report")
+
 public class RequestXML extends RegisterXML {
 
 	private String channelCode;
